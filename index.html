@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HL7 to FHIR Converter, FHIR Viewer & C-CDA Validator | Hgear.ai</title>
+<meta name="description" content="Free HL7 to FHIR converter, FHIR viewer, and C-CDA validator for healthcare data interoperability. Convert HL7 v2 and C-CDA to FHIR R4, check FHIR compliance against NCQA and US Core, free to test.">
+<meta name="keywords" content="hl7 to fhir, fhir and hl7, hl7 fhir, data interoperability in healthcare, interoperability of electronic health records, fhir hl7, hl7 fhir standards, healthcare data interoperability, fhir viewer, fhir compliance, hl7 converter, hl7 conversion, hl7 to fhir conversion, ccda validator, hl7 to fhir converter online, ncqa data aggregator">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div class="bg-grid"></div>
+
+<header>
+  <nav>
+    <a href="#" class="logo reveal" style="--d:0s;" aria-label="Hgear.ai home">
+      <img src="assets/images/hgear-icon.png" alt="" width="26" height="13" class="logo-icon"><span class="logo-word">Hgear<span>.ai</span></span>
+    </a>
+    <div class="navlinks reveal" style="--d:.08s;">
+      <a href="#tools">FHIR Viewer</a>
+      <a href="#tools">FHIR Transformers</a>
+      <a href="#fusion">Fusion</a>
+      <a href="#faq">Resources</a>
+    </div>
+    <div class="navcta reveal" style="--d:.16s;">
+      <a class="btn btn-primary" href="#cta">Get Instant Access</a>
+      <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="mobile-nav-panel" aria-label="Open menu" onclick="toggleMobileNav()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <div class="mobile-nav-panel" id="mobile-nav-panel">
+    <div class="wrap">
+      <a href="#tools" onclick="closeMobileNav()">FHIR Viewer</a>
+      <a href="#tools" onclick="closeMobileNav()">FHIR Transformers</a>
+      <a href="#fusion" onclick="closeMobileNav()">Fusion</a>
+      <a href="#faq" onclick="closeMobileNav()">Resources</a>
+      <a class="btn btn-primary" href="#cta" onclick="closeMobileNav()">Get Instant Access</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow reveal" style="--d:0s;">The Hgear FHIR Suite</div>
+    <h1 class="reveal" style="--d:.1s;">Hgear FHIR Server.<br>Free for Evaluation, Ready for Production.</h1>
+    <p class="subhead center reveal" style="--d:.2s;">HL7 to FHIR conversion, C-CDA to FHIR conversion, and FHIR compliance checks against NCQA and US Core, in your browser today. Fusion, Hgear's FHIR server, takes what you validate here into production.</p>
+    <div class="hero-ctas reveal" style="--d:.3s;">
+      <a class="btn btn-primary" href="#cta">Get Instant Access</a>
+      <a class="btn btn-secondary" href="#tools">Open FHIR Viewer</a>
+    </div>
+    <p class="hero-note reveal" style="--d:.38s;">No credit card required. Free forever.</p>
+  </div>
+</section>
+
+<section style="padding-top:0; padding-bottom:64px;">
+  <div class="wrap">
+    <div class="hero-dashboard reveal-scale" style="--d:.4s;">
+      <div class="hd-topbar">
+        <div class="hd-topbar-dots">
+          <span class="hd-dot" style="background:#ff5f56;"></span>
+          <span class="hd-dot" style="background:#ffbd2e;"></span>
+          <span class="hd-dot" style="background:#27c93f;"></span>
+        </div>
+        <div class="hd-tabs" role="tablist" aria-label="Hgear FHIR Suite live demo">
+          <button type="button" class="hd-tab active" id="hero-tab-0" role="tab" aria-selected="true" aria-controls="hero-tool-0" onclick="showHeroTool(0)">HL7 to FHIR Converter</button>
+          <button type="button" class="hd-tab" id="hero-tab-1" role="tab" aria-selected="false" aria-controls="hero-tool-1" onclick="showHeroTool(1)">FHIR Viewer</button>
+          <button type="button" class="hd-tab" id="hero-tab-2" role="tab" aria-selected="false" aria-controls="hero-tool-2" onclick="showHeroTool(2)">NCQA Validator</button>
+        </div>
+        <div class="hd-brand">Hgear<span>.ai</span></div>
+      </div>
+
+      <!-- TAB 0: HL7 to FHIR Converter -->
+      <div class="hd-panel active" id="hero-tool-0" role="tabpanel" aria-labelledby="hero-tab-0">
+        <div class="hd-flow-track" aria-hidden="true"><div class="hd-flow-fill" id="hd-flow-fill"></div></div>
+        <div class="hd-split">
+          <div class="hd-pane">
+            <div class="hd-pane-head">
+              <span class="hd-pane-label"><span class="hd-pane-dot"></span>Input &middot; HL7 v2</span>
+              <div class="hd-pane-actions">
+                <button type="button" class="hd-icon-btn" id="hd-hl7-copy-btn" onclick="copyHeroCode('hl7')">Copy</button>
+                <button type="button" class="hd-icon-btn" id="hd-hl7-edit-btn" onclick="toggleHeroEditMode()" aria-expanded="false" title="Edit this message or paste your own">Edit &middot; &#8942;</button>
+              </div>
+            </div>
+            <div class="hd-code" id="hd-hl7-code"></div>
+            <textarea id="hd-hl7-input" class="code-editable" spellcheck="false" aria-label="HL7 v2 message, editable" style="display:none; min-height:220px;"></textarea>
+          </div>
+
+          <div class="hd-convert-rail">
+            <div class="hd-convert-chips">
+              <span class="hd-convert-chip hl7">HL7</span>
+              <div class="hd-convert-arrow-wrap" id="hd-arrow-wrap">
+                <span class="hd-convert-glow"></span>
+                <span class="hd-convert-arrow">&rarr;</span>
+              </div>
+              <span class="hd-convert-chip fhir" id="hd-fhir-chip">FHIR</span>
+            </div>
+            <button type="button" class="hd-convert-btn" id="hd-convert-btn" onclick="runHeroConversion()">Convert</button>
+            <div class="hd-convert-status" id="hd-convert-status">Ready</div>
+          </div>
+
+          <div class="hd-pane">
+            <div class="hd-pane-head">
+              <span class="hd-pane-label"><span class="hd-pane-dot muted" id="hd-fhir-dot"></span>Output &middot; FHIR R4</span>
+              <div class="hd-pane-actions">
+                <button type="button" class="hd-icon-btn" id="hd-fhir-copy-btn" onclick="copyHeroCode('fhir')">Copy</button>
+                <button type="button" class="hd-icon-btn" onclick="downloadHeroOutput()">Download</button>
+              </div>
+            </div>
+            <div class="hd-code empty-state" id="hd-fhir-code">Click &quot;Convert&quot; to generate the FHIR R4 bundle.</div>
+          </div>
+        </div>
+
+        <div class="hd-api-bar">
+          <div class="hd-api-call">
+            <span class="hd-api-label">API call &middot; demo</span>
+            <pre class="hd-api-code">curl -X POST https://api.hgear.ai/v1/convert/hl7-to-fhir \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/hl7-v2" \
+  --data-binary @message.hl7</pre>
+          </div>
+          <div class="hd-api-status">
+            <span class="hd-api-status-label">Status</span>
+            <span class="hd-status-pill idle" id="hd-status-pill">Idle</span>
+          </div>
+        </div>
+        <p class="hd-disclaimer">Frontend demonstration &mdash; this runs entirely in your browser against the sample message above. It does not call a live Hgear production API.</p>
+      </div>
+
+      <!-- TAB 1: FHIR Viewer -->
+      <div class="hd-panel" id="hero-tool-1" role="tabpanel" aria-labelledby="hero-tab-1">
+        <div class="hd-viewer">
+          <div class="dash-toolbar" style="margin-bottom:14px;">
+            <span class="dash-toolbar-label">Paste a FHIR bundle, or browse the sample</span>
+            <div class="dash-toolbar-actions">
+              <button type="button" class="dash-btn" onclick="loadSampleFhir(true)">Sample</button>
+              <button type="button" class="dash-btn" onclick="toggleFhirEditor()" id="hd-fhir-editor-toggle">Edit JSON</button>
+            </div>
+          </div>
+          <textarea id="fhir-input" class="code-editable" spellcheck="false" aria-label="FHIR bundle JSON input, editable" style="display:none; min-height:200px; margin-bottom:14px;"></textarea>
+          <div class="hd-viewer-nav" id="hd-viewer-nav" role="tablist" aria-label="FHIR resource type"></div>
+          <div class="hd-viewer-selected" id="hd-viewer-selected" aria-live="polite"></div>
+          <div class="hd-viewer-body">
+            <div class="hd-field-grid" id="hd-viewer-fields"></div>
+            <div class="hd-code" id="hd-viewer-json" style="max-height:260px;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 2: NCQA Validator -->
+      <div class="hd-panel" id="hero-tool-2" role="tabpanel" aria-labelledby="hero-tab-2">
+        <div class="hd-validate">
+          <div class="dash-toolbar" style="margin-bottom:14px;">
+            <span class="dash-toolbar-label">Paste a FHIR resource, or browse the sample</span>
+            <div class="dash-toolbar-actions">
+              <button type="button" class="dash-btn" onclick="loadSampleValidator(true)">Sample</button>
+              <button type="button" class="dash-btn" onclick="toggleValidatorEditor()" id="hd-validator-editor-toggle">Edit JSON</button>
+            </div>
+          </div>
+          <textarea id="ncqa-input" class="code-editable" spellcheck="false" aria-label="FHIR resource to validate, editable" style="display:none; min-height:200px; margin-bottom:14px;"></textarea>
+          <div id="hd-validator-result"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="tools" class="section-flat">
+  <div class="wrap">
+    <div class="eyebrow reveal">The Hgear FHIR Suite</div>
+    <h2 class="reveal">One suite. Five FHIR capabilities.</h2>
+    <p class="subhead reveal" style="--d:.08s;">The Hgear FHIR Suite converts, validates, and visualizes healthcare data, from HL7 v2 and C-CDA into FHIR R4, in one connected workflow, with no environment to set up.</p>
+
+    <div class="suite-grid">
+      <div class="suite-card reveal-scale" style="--d:0s;">
+        <div class="suite-frame">
+          <img src="assets/images/hl7-to-fhir-converter.jpg" alt="HL7 to FHIR converter: Hgear.ai transforming HL7 v2 input into a validated FHIR R4 bundle" loading="lazy" width="1200" height="796" onerror="this.closest('.suite-frame').classList.add('img-fallback'); this.remove();">
+        </div>
+        <div class="suite-card-head">
+          <span class="suite-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h13l-3-3M20 17H7l3 3"/></svg></span>
+          <span class="suite-card-num">01</span>
+        </div>
+        <div class="tag-row"><span class="tag">HL7 v2</span><span class="tag">FHIR R4</span></div>
+        <h3>HL7 to FHIR Converter</h3>
+        <p>Turn HL7 v2 messages into structured FHIR bundles in seconds. Paste a message, get a bundle back.</p>
+      </div>
+
+      <div class="suite-card reveal-scale" style="--d:.06s;">
+        <div class="suite-frame">
+          <img src="assets/images/fhir-viewer.jpg" alt="FHIR Viewer showing FHIR R4 resource types: Patient, Observation, Condition, Encounter" loading="lazy" width="1200" height="600" onerror="this.closest('.suite-frame').classList.add('img-fallback'); this.remove();">
+        </div>
+        <div class="suite-card-head">
+          <span class="suite-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></span>
+          <span class="suite-card-num">02</span>
+        </div>
+        <div class="tag-row"><span class="tag">FHIR R4</span><span class="tag">No login</span></div>
+        <h3>FHIR Viewer</h3>
+        <p>Open and inspect FHIR resources without standing up a server first.</p>
+      </div>
+
+      <div class="suite-card reveal-scale" style="--d:.12s;">
+        <div class="suite-frame">
+          <img src="assets/images/ncqa-validator.jpg" alt="NCQA Validator: a FHIR resource checked and connected to NCQA and US Core profile validation" loading="lazy" width="1200" height="586" onerror="this.closest('.suite-frame').classList.add('img-fallback'); this.remove();">
+        </div>
+        <div class="suite-card-head">
+          <span class="suite-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3Z"/><path d="M9 12l2 2 4-4"/></svg></span>
+          <span class="suite-card-num">03</span>
+        </div>
+        <div class="tag-row"><span class="tag">NCQA</span><span class="tag">US Core</span></div>
+        <h3>NCQA Validator</h3>
+        <p>Check FHIR compliance against NCQA and US Core profiles before it reaches a payer, partner, or NCQA data aggregator.</p>
+        <div class="suite-note">Illustrative validation result, not a real submission.</div>
+      </div>
+
+      <div class="suite-card reveal-scale" style="--d:.18s;">
+        <div class="suite-frame">
+          <img src="assets/images/ccda-to-fhir-converter.jpg" alt="C-CDA to FHIR conversion: a C-CDA R2.1 document converting into a structured, validated FHIR R4 resource" loading="lazy" width="1200" height="600" onerror="this.closest('.suite-frame').classList.add('img-fallback'); this.remove();">
+        </div>
+        <div class="suite-card-head">
+          <span class="suite-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l4 4v14H7z"/><path d="M10 13h6M13 10l3 3-3 3"/></svg></span>
+          <span class="suite-card-num">04</span>
+        </div>
+        <div class="tag-row"><span class="tag">C-CDA R2.1</span><span class="tag">FHIR R4</span></div>
+        <h3>C-CDA to FHIR Converter</h3>
+        <p>Convert C-CDA documents into FHIR resources your downstream systems can actually use.</p>
+      </div>
+
+      <div class="suite-card reveal-scale" style="--d:.24s;">
+        <div class="suite-frame">
+          <img src="assets/images/ccda-scorecard.jpg" alt="C-CDA Scorecard completeness dashboard showing a sample 88/100 score" loading="lazy" width="1200" height="554" onerror="this.closest('.suite-frame').classList.add('img-fallback'); this.remove();">
+        </div>
+        <div class="suite-card-head">
+          <span class="suite-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M12 20V4M20 20v-7"/></svg></span>
+          <span class="suite-card-num">05</span>
+        </div>
+        <div class="tag-row"><span class="tag">C-CDA R2.1</span></div>
+        <h3>C-CDA Scorecard</h3>
+        <p>A C-CDA validator that scores a document for completeness and catches gaps before they become a compliance problem.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="fusion" class="fusion">
+  <div class="wrap">
+    <div class="fusion-grid">
+      <div class="reveal">
+        <div class="fusion-badge">Coming soon</div>
+        <h2>Fusion: the FHIR server behind the Suite</h2>
+        <p class="subhead">Every capability in the Hgear FHIR Suite prepares your data for one place. Fusion is Hgear's FHIR server, built to take the HL7 v2, C-CDA, and FHIR R4 data you've already validated here and run it in production.</p>
+        <a class="btn btn-primary" href="#cta">Get Early Access</a>
+      </div>
+      <div class="diagram-box reveal-scale" style="padding:32px; background:#fff; border-color:var(--border); --d:.15s;">
+        <div class="fusion-pipeline">
+          <div class="fp-cols">
+            <div class="fp-col">
+              <div class="fp-node fp-input">HL7 v2 message</div>
+              <div class="fp-connector"><span class="fp-pulse" aria-hidden="true"></span></div>
+              <div class="fp-node fp-process fp-process-blue">Convert<span class="fp-node-sub">HL7 to FHIR R4</span></div>
+            </div>
+            <div class="fp-col">
+              <div class="fp-node fp-input fp-input-green">C-CDA document</div>
+              <div class="fp-connector"><span class="fp-pulse d2" aria-hidden="true"></span></div>
+              <div class="fp-node fp-process fp-process-green">Validate &amp; score<span class="fp-node-sub">NCQA, US Core, C-CDA</span></div>
+            </div>
+          </div>
+          <div class="fp-merge" aria-hidden="true"></div>
+          <div class="fp-row"><div class="fp-node fp-fhir">FHIR R4 bundle</div></div>
+          <div class="fp-connector"><span class="fp-pulse d3" aria-hidden="true"></span></div>
+          <div class="fp-row"><div class="fp-node fp-fusion">Fusion</div></div>
+        </div>
+        <p class="mock-caption" style="background:transparent; color:var(--text-muted); text-align:center; padding:20px 0 0;">Illustrative data flow: HL7 v2, C-CDA, and FHIR R4 converge through the Suite into Fusion.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow reveal">Built for your workflow</div>
+    <h2 class="reveal">See how teams put Hgear to work</h2>
+    <p class="subhead reveal" style="--d:.08s;">From early evaluation to a production pipeline, Hgear fits where you are.</p>
+    <div class="tabs-nav reveal" style="--d:.16s;">
+      <button class="tab-btn active" onclick="showTab(0)">AI Startups</button>
+      <button class="tab-btn" onclick="showTab(1)">Healthcare IT Consultants</button>
+      <button class="tab-btn" onclick="showTab(2)">EHR Vendors</button>
+    </div>
+    <div class="tab-panel active" id="tab-0">
+      <div class="persona-panel">
+        <p class="persona-copy">Test how your product handles HL7 v2 and C-CDA input before you write a single line of parsing code. Run real-shaped data through the converters, confirm the FHIR output matches what your model or pipeline expects, then move to the API once you're ready to integrate.</p>
+        <img src="assets/images/ai-startups.jpg" alt="AI startup workflow: HL7 v2 and C-CDA input validated through Hgear.ai and converted to FHIR R4" width="1200" height="558" onerror="this.closest('.persona-panel').classList.add('img-fallback'); this.remove();">
+      </div>
+    </div>
+    <div class="tab-panel" id="tab-1">
+      <div class="persona-panel">
+        <p class="persona-copy">Validate a client's C-CDA exports or HL7 feeds during a scoping call, live, without asking them to grant you access to a sandbox first. The Scorecard and Validator give you a defensible answer on data quality before you write the statement of work.</p>
+        <img src="assets/images/healthcare-it-consultants.jpg" alt="Healthcare IT consultant workflow: C-CDA and HL7 v2 input scored and validated through Hgear.ai with a quality overview" width="1200" height="633" onerror="this.closest('.persona-panel').classList.add('img-fallback'); this.remove();">
+      </div>
+    </div>
+    <div class="tab-panel" id="tab-2">
+      <div class="persona-panel">
+        <p class="persona-copy">Convert existing HL7 v2 and C-CDA output into FHIR R4 to test against Da Vinci or US Core requirements before committing engineering time to a native FHIR build.</p>
+        <img src="assets/images/ehr-vendors.jpg" alt="EHR vendor workflow: HL7 v2 and C-CDA converted to FHIR R4 and tested against Da Vinci and US Core requirements" width="1200" height="683" onerror="this.closest('.persona-panel').classList.add('img-fallback'); this.remove();">
+      </div>
+    </div>
+    <div class="fusion-note reveal" style="margin-top:32px; display:flex; align-items:center; gap:10px; border-style:solid;">
+      <span style="font-size:13px; color:var(--text-secondary);">Detailed customer case studies are being prepared as more teams move through evaluation. <a href="#cta" class="tool-link">Talk to the team</a> about your specific workflow.</span>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--bg-alt);">
+  <div class="wrap">
+    <div class="eyebrow reveal">How it works</div>
+    <h2 class="reveal">From raw data to FHIR, in four steps</h2>
+    <div class="stepper-panel reveal" style="--d:.1s;">
+      <div class="stepper-tabs">
+        <button class="stepper-tab active" onclick="showStep(0, true)">01 · Pick a tool</button>
+        <button class="stepper-tab" onclick="showStep(1, true)">02 · Upload or paste your data</button>
+        <button class="stepper-tab" onclick="showStep(2, true)">03 · Run it</button>
+        <button class="stepper-tab" onclick="showStep(3, true)">04 · Export or connect</button>
+      </div>
+      <div class="stepper-body">
+        <div class="stepper-line"><div class="stepper-line-fill" id="stepper-line-fill"></div></div>
+        <div class="stepper-card">
+          <div class="stepper-ghost-num" id="stepper-num">01</div>
+          <div class="stepper-text">
+            <h4 id="stepper-title">Pick a tool</h4>
+            <p id="stepper-desc">Choose the converter, validator, or viewer that matches what you're working with.</p>
+          </div>
+          <div class="stepper-visual">
+            <div class="stepper-visual-panel active" data-step="0">
+              <div class="sv-tools">
+                <div class="sv-tool-pill sel">HL7 to FHIR Converter</div>
+                <div class="sv-tool-pill">FHIR Viewer</div>
+                <div class="sv-tool-pill">NCQA Validator</div>
+              </div>
+            </div>
+            <div class="stepper-visual-panel" data-step="1">
+              <div class="sv-upload">
+                <div class="sv-upload-icon" aria-hidden="true">&#128196;</div>
+                <div class="sv-upload-name">message.hl7</div>
+                <div class="sv-lines"><div class="sv-line" style="width:90%;"></div><div class="sv-line" style="width:70%;"></div><div class="sv-line" style="width:80%;"></div></div>
+              </div>
+            </div>
+            <div class="stepper-visual-panel" data-step="2">
+              <div class="sv-run">
+                <div class="sv-spinner" aria-hidden="true"></div>
+                <div class="sv-run-label">Processing&hellip;</div>
+              </div>
+            </div>
+            <div class="stepper-visual-panel" data-step="3">
+              <div class="sv-export">
+                <div class="sv-export-btn">Download JSON &darr;</div>
+                <div class="sv-export-code">POST /v1/convert</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-flat">
+  <div class="wrap">
+    <div class="eyebrow reveal">Two ways to use Hgear</div>
+    <h2 class="reveal">Browser tools today, an API when you're ready</h2>
+    <p class="subhead reveal" style="--d:.08s;">Data interoperability in healthcare shouldn't require a procurement cycle before you can test it.</p>
+    <div class="two-way">
+      <div class="way-card reveal" style="--d:0s;">
+        <h3>Free web tools</h3>
+        <p>Open any converter or validator in your browser. Paste or upload data, get results immediately. No installation, no environment setup.</p>
+      </div>
+      <div class="way-card reveal" style="--d:.12s;">
+        <h3>Developer API</h3>
+        <p>Call the same converters and validators programmatically. Move from browser testing to a production pipeline without switching tools.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pricing">
+  <div class="wrap center">
+    <div class="eyebrow reveal">Pricing</div>
+    <h2 class="reveal">Free to test, straightforward to scale</h2>
+    <p class="subhead center reveal" style="--d:.08s;">No per-conversion charges. No hidden limits on the free tier.</p>
+    <div class="price-grid">
+      <div class="price-card featured reveal" style="text-align:left; --d:0s;">
+        <h3>Hgear Free</h3>
+        <p class="desc">For testing, evaluation, and getting familiar with the tools.</p>
+        <ul>
+          <li>Full access to all five accelerators</li>
+          <li>No credit card required</li>
+          <li>Usage credits for testing and validation</li>
+          <li>Not for use with Protected Health Information</li>
+        </ul>
+        <a class="btn btn-primary" href="#cta">Get Instant Access</a>
+      </div>
+      <div class="price-card reveal" style="text-align:left; --d:.12s;">
+        <h3>Hgear Enterprise</h3>
+        <p class="desc">For teams moving from evaluation into a production pipeline.</p>
+        <ul>
+          <li>Developer APIs for programmatic integration</li>
+          <li>Custom deployment and consulting support</li>
+        </ul>
+        <a class="btn btn-secondary" href="mailto:connect@hgear.ai">Talk to Sales</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow reveal">Testimonial</div>
+    <h2 class="reveal">What evaluation looks like for teams like these</h2>
+    <p class="subhead reveal" style="--d:.08s;">Sample testimonials for presentation purposes. These are illustrative quotes, not statements from confirmed Hgear customers.</p>
+    <div class="testi-track">
+      <div class="testi-card reveal" style="--d:0s;">
+        <div class="testi-mark">&ldquo;</div>
+        <p class="testi-quote">We ran a week of real-shaped HL7 v2 messages through the converter before writing any parsing code ourselves. It told us in an afternoon what would have taken a sprint to find out.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">AI</div>
+          <div>
+            <div class="testi-name">Healthcare Technology Leader</div>
+            <div class="testi-role">AI Startup, sample testimonial</div>
+          </div>
+        </div>
+        <div class="testi-tag">Demo content, not a verified customer</div>
+      </div>
+      <div class="testi-card reveal" style="--d:.1s;">
+        <div class="testi-mark">&ldquo;</div>
+        <p class="testi-quote">The Scorecard gave us a defensible, documented answer on a client's C-CDA quality during the scoping call itself, instead of a week later in a follow-up email.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">HC</div>
+          <div>
+            <div class="testi-name">Interoperability Consultant</div>
+            <div class="testi-role">Healthcare IT Consulting, sample testimonial</div>
+          </div>
+        </div>
+        <div class="testi-tag">Demo content, not a verified customer</div>
+      </div>
+      <div class="testi-card reveal" style="--d:.2s;">
+        <div class="testi-mark">&ldquo;</div>
+        <p class="testi-quote">Being able to test HL7 v2 and C-CDA output against US Core before committing engineering time to a native FHIR build changed how we scoped the whole project.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">EV</div>
+          <div>
+            <div class="testi-name">Director of Interoperability</div>
+            <div class="testi-role">EHR Vendor, sample testimonial</div>
+          </div>
+        </div>
+        <div class="testi-tag">Demo content, not a verified customer</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq" style="background:var(--bg-alt);">
+  <div class="wrap center">
+    <div class="eyebrow reveal">FAQ</div>
+    <h2 class="reveal">Frequently asked questions</h2>
+    <p class="subhead center reveal" style="--d:.06s;">Everything you need to know before you start testing.</p>
+    <div class="faq-list reveal" style="--d:.1s;">
+      <div class="faq-item open reveal" style="--d:0s;">
+        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="true" aria-controls="faq-a-0" id="faq-q-0">
+          <h4>Are Hgear's tools really free?</h4>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <p id="faq-a-0" role="region" aria-labelledby="faq-q-0">Yes. All five accelerators are free to use, with no credit card required. Each account includes usage credits for testing and validation.</p>
+      </div>
+      <div class="faq-item reveal" style="--d:.05s;">
+        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-a-1" id="faq-q-1">
+          <h4>Do I need to install anything?</h4>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <p id="faq-a-1" role="region" aria-labelledby="faq-q-1">No. Every tool runs in the browser. Once your access request is approved, you can paste, upload, convert, view, and download without installing software.</p>
+      </div>
+      <div class="faq-item reveal" style="--d:.1s;">
+        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-a-2" id="faq-q-2">
+          <h4>Can I upload real patient data?</h4>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <p id="faq-a-2" role="region" aria-labelledby="faq-q-2">No. Hgear's tools are built for testing and evaluation only. Use synthetic or de-identified data. Nothing you upload is stored or retained.</p>
+      </div>
+      <div class="faq-item reveal" style="--d:.15s;">
+        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-a-3" id="faq-q-3">
+          <h4>Which data standards does Hgear support?</h4>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <p id="faq-a-3" role="region" aria-labelledby="faq-q-3">Hgear supports HL7 v2, C-CDA R2.1, and FHIR R4. Validation runs against profiles including US Core and NCQA guidance where applicable.</p>
+      </div>
+      <div class="faq-item reveal" style="--d:.2s;">
+        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-a-4" id="faq-q-4">
+          <h4>Can I use these tools in a production pipeline?</h4>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <p id="faq-a-4" role="region" aria-labelledby="faq-q-4">Yes. Each accelerator has a developer API that lets you move from browser-based testing to programmatic integration. Contact connect@hgear.ai for enterprise support.</p>
+      </div>
+      <div class="faq-item reveal" style="--d:.25s;">
+        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-a-5" id="faq-q-5">
+          <h4>How is my data secured?</h4>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <p id="faq-a-5" role="region" aria-labelledby="faq-q-5">Every session runs over HTTPS and stays isolated from other users. No data persists after processing, and no credentials are required to use the tools.</p>
+      </div>
+      <div class="faq-item reveal" style="--d:.3s;">
+        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-a-6" id="faq-q-6">
+          <h4>Do you offer custom implementations?</h4>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <p id="faq-a-6" role="region" aria-labelledby="faq-q-6">Yes. The Hgear team provides consulting, custom deployment, and enterprise support for teams scaling past the free tier.</p>
+      </div>
+      <div class="faq-item reveal" style="--d:.35s;">
+        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-a-7" id="faq-q-7">
+          <h4>Is there a free HL7 to FHIR converter online?</h4>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <p id="faq-a-7" role="region" aria-labelledby="faq-q-7">Yes. Hgear's HL7 to FHIR converter runs in the browser with no installation, converting HL7 v2 messages into FHIR R4 bundles at no cost for testing and evaluation.</p>
+      </div>
+      <div class="faq-item reveal" style="--d:.4s;">
+        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-a-8" id="faq-q-8">
+          <h4>What is data interoperability in healthcare?</h4>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <p id="faq-a-8" role="region" aria-labelledby="faq-q-8">Data interoperability in healthcare is the ability of different systems, EHRs, labs, and payers, to exchange and use patient data without manual reformatting. FHIR R4 and HL7 v2 are the two standards Hgear's tools bridge to support the interoperability of electronic health records.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="community">
+  <div class="wrap">
+    <div class="eyebrow reveal" style="color:#8ec9ec;">Community</div>
+    <h2 class="reveal">Join the interoperability community</h2>
+    <p class="subhead center reveal" style="--d:.08s;">Connect with teams working on HL7 v2, C-CDA, and FHIR R4 data every day. Get updates on new tools and integration APIs, and be first to try what's coming next.</p>
+    <a class="btn btn-primary reveal" style="--d:.16s;" href="#cta">Join the Community</a>
+    <div class="community-audience">
+      <div class="audience-card reveal" style="--d:.2s;">
+        <span class="audience-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V8l8-5 8 5v13"/><path d="M9 21v-6h6v6"/><path d="M9 12h.01M12 12h.01M15 12h.01"/></svg></span>
+        <span class="audience-label">Health Systems</span>
+      </div>
+      <div class="audience-card reveal" style="--d:.26s;">
+        <span class="audience-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></span>
+        <span class="audience-label">EHR Vendors</span>
+      </div>
+      <div class="audience-card reveal" style="--d:.32s;">
+        <span class="audience-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4l-6 6 2 2 6-6a4 4 0 0 0 5.4-5.4l-2.3 2.3-2-2 2.3-2.3Z"/></svg></span>
+        <span class="audience-label">Interop Engineers</span>
+      </div>
+      <div class="audience-card reveal" style="--d:.38s;">
+        <span class="audience-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 3h6v3H9z"/><path d="M8 11l2 2 4-4M8 16h6"/></svg></span>
+        <span class="audience-label">Compliance Teams</span>
+      </div>
+      <div class="audience-card reveal" style="--d:.44s;">
+        <span class="audience-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="7" width="10" height="10" rx="2"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></svg></span>
+        <span class="audience-label">AI Product Teams</span>
+      </div>
+      <div class="audience-card reveal" style="--d:.5s;">
+        <span class="audience-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M4 20c0-3 2.5-5 5-5s5 2 5 5"/><circle cx="17" cy="8" r="2.5"/><path d="M15 15.5c2-.3 4 1.5 4 4.5"/></svg></span>
+        <span class="audience-label">Consultants</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cta">
+  <div class="wrap">
+    <div class="eyebrow reveal">Questions about Hgear?</div>
+    <h2 class="reveal">Let us know how we can help</h2>
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <div class="contact-info-item">
+          <strong>Email</strong>
+          <a href="mailto:connect@hgear.ai">connect@hgear.ai</a>
+        </div>
+        <div class="contact-info-item">
+          <strong>Response time</strong>
+          <span>Most requests get a reply within one business day.</span>
+        </div>
+        <div class="contact-info-item">
+          <strong>Enterprise and API access</strong>
+          <span>Ask about the developer API or a custom deployment.</span>
+        </div>
+      </div>
+      <div class="contact-form-card reveal-scale" style="--d:.1s;">
+        <form onsubmit="return handleContactSubmit(event);">
+          <div class="field-row">
+            <div class="field">
+              <input type="text" id="cf-name" placeholder=" " required>
+              <label for="cf-name">Full name</label>
+            </div>
+            <div class="field">
+              <input type="email" id="cf-email" placeholder=" " required>
+              <label for="cf-email">Email</label>
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <input type="text" id="cf-company" placeholder=" ">
+              <label for="cf-company">Company</label>
+            </div>
+            <div class="field">
+              <input type="tel" id="cf-phone" placeholder=" ">
+              <label for="cf-phone">Phone number</label>
+            </div>
+          </div>
+          <div class="field">
+            <textarea id="cf-message" placeholder=" "></textarea>
+            <label for="cf-message">Message</label>
+          </div>
+          <button type="submit" class="btn btn-primary contact-submit" id="cf-submit">Send a message</button>
+          <p id="cf-note" style="font-size:12px; color:var(--text-muted); min-height:16px;" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap reveal">
+    <div class="footer-grid">
+      <div>
+        <div class="logo"><img src="assets/images/hgear-icon.png" alt="" width="26" height="13" class="logo-icon"><span class="logo-word">Hgear<span>.ai</span></span></div>
+        <p style="margin-top:10px; max-width:320px;">Free tools for HL7 to FHIR conversion and the interoperability of electronic health records.</p>
+      </div>
+      <div>
+        <h4>Products</h4>
+        <a href="#tools">FHIR Viewer</a>
+        <a href="#tools">HL7 to FHIR Converter</a>
+        <a href="#tools">NCQA Validator</a>
+        <a href="#tools">C-CDA Scorecard</a>
+        <a href="#tools">C-CDA to FHIR Converter</a>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <a href="#">About Hgear</a>
+        <a href="#cta">Contact</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Hgear.ai</span>
+      <span><a href="#">Terms of Use</a> · <a href="#">Privacy Policy</a></span>
+    </div>
+  </div>
+</footer>
+
+
+<script src="js/main.js"></script>
+</body>
+</html>

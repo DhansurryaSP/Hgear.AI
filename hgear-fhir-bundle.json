@@ -1,0 +1,79 @@
+{
+  "resourceType": "Bundle",
+  "type": "transaction",
+  "timestamp": "2025-05-22T12:00:00Z",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:a53f2c10-0001-4b1e-9c2a-000000000001",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "patient-1",
+        "identifier": [
+          {
+            "system": "http://example.org/mrn",
+            "value": "123456"
+          }
+        ],
+        "name": [
+          {
+            "use": "official",
+            "family": "DOE",
+            "given": [
+              "JOHN"
+            ]
+          }
+        ],
+        "gender": "male",
+        "birthDate": "1980-01-01"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:a53f2c10-0001-4b1e-9c2a-000000000002",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-wbc",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "6690-2",
+              "display": "White blood cell count"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/patient-1"
+        },
+        "valueQuantity": {
+          "value": 6.5,
+          "unit": "10*3/uL"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:a53f2c10-0001-4b1e-9c2a-000000000003",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-rbc",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "789-8",
+              "display": "Red blood cell count"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/patient-1"
+        },
+        "valueQuantity": {
+          "value": 4.5,
+          "unit": "10*6/uL"
+        }
+      }
+    }
+  ]
+}
