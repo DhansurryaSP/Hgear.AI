@@ -20,9 +20,9 @@
       <img src="assets/images/hgear-icon.png" alt="" width="26" height="13" class="logo-icon"><span class="logo-word">Hgear<span>.ai</span></span>
     </a>
     <div class="navlinks reveal" style="--d:.08s;">
+      <a href="#">About</a>
       <a href="#tools">FHIR Viewer</a>
-      <a href="#tools">FHIR Transformers</a>
-      <a href="#fusion">Fusion</a>
+      <a href="#fusion">FHIR Bundle</a>
       <a href="#faq">Resources</a>
     </div>
     <div class="navcta reveal" style="--d:.16s;">
@@ -34,9 +34,9 @@
   </nav>
   <div class="mobile-nav-panel" id="mobile-nav-panel">
     <div class="wrap">
+      <a href="#" onclick="closeMobileNav()">About</a>
       <a href="#tools" onclick="closeMobileNav()">FHIR Viewer</a>
-      <a href="#tools" onclick="closeMobileNav()">FHIR Transformers</a>
-      <a href="#fusion" onclick="closeMobileNav()">Fusion</a>
+      <a href="#fusion" onclick="closeMobileNav()">FHIR Bundle</a>
       <a href="#faq" onclick="closeMobileNav()">Resources</a>
       <a class="btn btn-primary" href="#cta" onclick="closeMobileNav()">Get Instant Access</a>
     </div>
@@ -175,68 +175,53 @@
     <p class="subhead reveal" style="--d:.08s;">The Hgear FHIR Suite converts, validates, and visualizes healthcare data, from HL7 v2 and C-CDA into FHIR R4, in one connected workflow, with no environment to set up.</p>
 
     <div class="suite-grid">
-      <div class="suite-card reveal-scale" style="--d:0s;">
-        <div class="suite-frame">
-          <img src="assets/images/hl7-to-fhir-converter.jpg" alt="HL7 to FHIR converter: Hgear.ai transforming HL7 v2 input into a validated FHIR R4 bundle" loading="lazy" width="1200" height="796" onerror="this.closest('.suite-frame').classList.add('img-fallback'); this.remove();">
+      <div class="suite-card suite-card-lg suite-accent-blue reveal-scale" style="--d:0s;">
+        <span class="suite-ghost-num">01</span>
+        <div class="suite-card-top">
+          <span class="suite-icon-sm" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h13l-3-3M20 17H7l3 3"/></svg></span>
+          <div class="tag-row"><span class="tag">HL7 v2</span><span class="tag">FHIR R4</span></div>
         </div>
-        <div class="suite-card-head">
-          <span class="suite-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h13l-3-3M20 17H7l3 3"/></svg></span>
-          <span class="suite-card-num">01</span>
-        </div>
-        <div class="tag-row"><span class="tag">HL7 v2</span><span class="tag">FHIR R4</span></div>
         <h3>HL7 to FHIR Converter</h3>
         <p>Turn HL7 v2 messages into structured FHIR bundles in seconds. Paste a message, get a bundle back.</p>
       </div>
 
-      <div class="suite-card reveal-scale" style="--d:.06s;">
-        <div class="suite-frame">
-          <img src="assets/images/fhir-viewer.jpg" alt="FHIR Viewer showing FHIR R4 resource types: Patient, Observation, Condition, Encounter" loading="lazy" width="1200" height="600" onerror="this.closest('.suite-frame').classList.add('img-fallback'); this.remove();">
+      <div class="suite-card suite-card-md suite-accent-green reveal-scale" style="--d:.06s;">
+        <span class="suite-ghost-num">02</span>
+        <div class="suite-card-top">
+          <span class="suite-icon-sm" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></span>
+          <div class="tag-row"><span class="tag">FHIR R4</span><span class="tag">No login</span></div>
         </div>
-        <div class="suite-card-head">
-          <span class="suite-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></span>
-          <span class="suite-card-num">02</span>
-        </div>
-        <div class="tag-row"><span class="tag">FHIR R4</span><span class="tag">No login</span></div>
         <h3>FHIR Viewer</h3>
         <p>Open and inspect FHIR resources without standing up a server first.</p>
       </div>
 
-      <div class="suite-card reveal-scale" style="--d:.12s;">
-        <div class="suite-frame">
-          <img src="assets/images/ncqa-validator.jpg" alt="NCQA Validator: a FHIR resource checked and connected to NCQA and US Core profile validation" loading="lazy" width="1200" height="586" onerror="this.closest('.suite-frame').classList.add('img-fallback'); this.remove();">
+      <div class="suite-card suite-accent-amber reveal-scale" style="--d:.12s;">
+        <span class="suite-ghost-num">03</span>
+        <div class="suite-card-top">
+          <span class="suite-icon-sm" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3Z"/><path d="M9 12l2 2 4-4"/></svg></span>
+          <div class="tag-row"><span class="tag">NCQA</span><span class="tag">US Core</span></div>
         </div>
-        <div class="suite-card-head">
-          <span class="suite-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3Z"/><path d="M9 12l2 2 4-4"/></svg></span>
-          <span class="suite-card-num">03</span>
-        </div>
-        <div class="tag-row"><span class="tag">NCQA</span><span class="tag">US Core</span></div>
         <h3>NCQA Validator</h3>
         <p>Check FHIR compliance against NCQA and US Core profiles before it reaches a payer, partner, or NCQA data aggregator.</p>
         <div class="suite-note">Illustrative validation result, not a real submission.</div>
       </div>
 
-      <div class="suite-card reveal-scale" style="--d:.18s;">
-        <div class="suite-frame">
-          <img src="assets/images/ccda-to-fhir-converter.jpg" alt="C-CDA to FHIR conversion: a C-CDA R2.1 document converting into a structured, validated FHIR R4 resource" loading="lazy" width="1200" height="600" onerror="this.closest('.suite-frame').classList.add('img-fallback'); this.remove();">
+      <div class="suite-card suite-accent-blue reveal-scale" style="--d:.18s;">
+        <span class="suite-ghost-num">04</span>
+        <div class="suite-card-top">
+          <span class="suite-icon-sm" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l4 4v14H7z"/><path d="M10 13h6M13 10l3 3-3 3"/></svg></span>
+          <div class="tag-row"><span class="tag">C-CDA R2.1</span><span class="tag">FHIR R4</span></div>
         </div>
-        <div class="suite-card-head">
-          <span class="suite-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l4 4v14H7z"/><path d="M10 13h6M13 10l3 3-3 3"/></svg></span>
-          <span class="suite-card-num">04</span>
-        </div>
-        <div class="tag-row"><span class="tag">C-CDA R2.1</span><span class="tag">FHIR R4</span></div>
         <h3>C-CDA to FHIR Converter</h3>
         <p>Convert C-CDA documents into FHIR resources your downstream systems can actually use.</p>
       </div>
 
-      <div class="suite-card reveal-scale" style="--d:.24s;">
-        <div class="suite-frame">
-          <img src="assets/images/ccda-scorecard.jpg" alt="C-CDA Scorecard completeness dashboard showing a sample 88/100 score" loading="lazy" width="1200" height="554" onerror="this.closest('.suite-frame').classList.add('img-fallback'); this.remove();">
+      <div class="suite-card suite-accent-green reveal-scale" style="--d:.24s;">
+        <span class="suite-ghost-num">05</span>
+        <div class="suite-card-top">
+          <span class="suite-icon-sm" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M12 20V4M20 20v-7"/></svg></span>
+          <div class="tag-row"><span class="tag">C-CDA R2.1</span></div>
         </div>
-        <div class="suite-card-head">
-          <span class="suite-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M12 20V4M20 20v-7"/></svg></span>
-          <span class="suite-card-num">05</span>
-        </div>
-        <div class="tag-row"><span class="tag">C-CDA R2.1</span></div>
         <h3>C-CDA Scorecard</h3>
         <p>A C-CDA validator that scores a document for completeness and catches gaps before they become a compliance problem.</p>
       </div>
