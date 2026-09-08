@@ -206,6 +206,7 @@
     border-color: var(--border-strong);
     backdrop-filter: blur(var(--blur));
     -webkit-backdrop-filter: blur(var(--blur));
+    margin-top: auto;
   }
 
   .btn-secondary:hover {
@@ -713,6 +714,8 @@
     padding: 32px;
     backdrop-filter: blur(var(--blur));
     -webkit-backdrop-filter: blur(var(--blur));
+    display: flex;
+    flex-direction: column;
   }
 
   .price-card.featured {
@@ -1398,6 +1401,7 @@
     opacity: 1;
     transform: translateY(0);
     filter: blur(0);
+
   }
 
   .reveal-scale {
